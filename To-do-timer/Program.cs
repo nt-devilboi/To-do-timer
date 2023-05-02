@@ -22,6 +22,7 @@ builder.Services.AddDbContext<BookContext>();
 builder.Services.AddScoped<ManageBook>();
 builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<StatusRepository>();
+builder.Services.AddScoped<EventRepository>();
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<UserContext>()
     .AddDefaultTokenProviders();

@@ -4,11 +4,11 @@ public class ManageBook
 {
     public readonly BookRepository BookRepository;
     public readonly StatusRepository StatusRepository;
-    
-    public ManageBook(BookRepository bookRepository, StatusRepository statusRepository)
+    public readonly EventRepository EventRepository;
+    public ManageBook(BookRepository bookRepository, StatusRepository statusRepository, EventRepository eventRepository)
     {
         BookRepository = bookRepository;
         StatusRepository = statusRepository;
+        EventRepository = eventRepository;
     }
-    
 }

@@ -8,7 +8,7 @@ public class BookRepository: BaseRepository<Book>
 {
     private BookContext _db;
 
-    public BookRepository(BookContext db) : base(db.Books, db)
+    public BookRepository(BookContext db) : base(db)
     {
         _db = db;
     }

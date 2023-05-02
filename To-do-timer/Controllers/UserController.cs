@@ -20,20 +20,9 @@ public class UserController : Controller
     {
         _manageBook = manageBook;
     }
-
-    [HttpGet]
-    [Route("Admin")]
-    public IActionResult Test()
-    {
-        var userId = User.FindFirst("id")?.Value;
-
-        return Ok($"id : {userId}");
-    }
-
-
+    
     // todo реализация получение книжки по id; можно попрожбовать использовать чистый sql для таких запросв
-    [HttpPost]
-    [Route("create-book")]
+    [HttpPost("book/create")]
     public async Task<IActionResult> CreateBook([FromBody] RequestBook requestBook)
     {
         var userId = new Guid(User.FindFirst("id")?.Value!); // выглядит как кринж код!
@@ -46,8 +35,7 @@ public class UserController : Controller
         return Ok($"{book}");
     }
 
-    [HttpDelete]
-    [Route("delete-books")]
+    [HttpDelete("books/delete")]
     public async Task<IActionResult> DeleteBooks()
     {
         var userId = new Guid(User.FindFirst("id")?.Value!); // ой опять кринж код!
@@ -64,15 +52,21 @@ public class UserController : Controller
         return Ok("все окей!!");
     }
 
-    [HttpDelete]
-    [Route("delete-book")]
-    public async Task<Result<Book>> DeleteBook(string name)
+    [HttpGet("books")]
+    public async Task<Result<Book[]>> GetUserBooks()
     {
-        var userId = new Guid(User.FindFirst("id")?.Value!); // ой опять кринж код!
-        var book = await _manageBook.BookRepository.GetByUser(userId, name);
-        
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+        var books = await _manageBook.BookRepository.GetAllByUser(userId);
+        return new Result<Book[]>(books.ToArray());
+    }
+
+    [HttpDelete("book/delete/{id:guid}")]
+    public async Task<Result<Book>> DeleteBook(Guid id)
+    {
+        var book =  await _manageBook.BookRepository.Get(id);
+    
         if (book == null)
-             return HttpContext.WithError<Book>(HttpStatusCode.NotAcceptable,"Такого юзера нету ");
+            return HttpContext.WithError<Book>(HttpStatusCode.NotAcceptable, "Такой книги нету ");
         HttpContext.Response.StatusCode = StatusCodes.Status202Accepted;
         _manageBook.BookRepository.Delete(book);
         _manageBook.BookRepository.SaveChange();

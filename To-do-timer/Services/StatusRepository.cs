@@ -4,11 +4,12 @@ using To_do_timer.Models.Book;
 
 namespace To_do_timer.Services;
 
-public class StatusRepository
+public class StatusRepository : BaseRepository<Status>
 {
-    private DbSet<Status> _status = new BookContext(new DbContextOptions<BookContext>()).Statuses;
+    private DbContext _dbContext;
 
-    public StatusRepository()
+    public StatusRepository(BookContext bookContext) : base(bookContext)
     {
+        _dbContext = bookContext;
     }
 }
