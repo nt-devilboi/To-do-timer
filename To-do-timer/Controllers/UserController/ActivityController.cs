@@ -72,4 +72,24 @@ public class UserController : Controller
         _manageBook.BookRepository.SaveChange();
         return HttpContext.WithResult<Book>(HttpStatusCode.Accepted, null);
     }
+    
+    [HttpDelete("status/delete/{id:guid}")]
+    public async Task<Result<Status>> DeleteStatus(Guid id)
+    {
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+        var status = await _manageBook.StatusRepository.Get(id);
+        if (status == null)
+            return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "с таким именем нету");
+        
+        _manageBook.StatusRepository.Delete(id);
+        _manageBook.StatusRepository.SaveChange();
+
+        return HttpContext.WithResult(HttpStatusCode.Accepted, status);
+    }
+
+    /*// [HttpPost("end-day")]
+    /*#1#public async Task<Result<Event>> EndDay(DateTime time)
+    {
+        
+    }*/
 }

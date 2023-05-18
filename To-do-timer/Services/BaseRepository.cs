@@ -6,6 +6,7 @@ public abstract class BaseRepository<T> where T : class
 {
     private DbSet<T> _dbSet;
     private DbContext _dbContext;
+
     public BaseRepository(DbContext dbContext)
     {
         _dbSet = dbContext.Set<T>();
@@ -15,7 +16,6 @@ public abstract class BaseRepository<T> where T : class
     public async void Add(T entity)
     {
         _dbSet.Add(entity);
-        await _dbContext.SaveChangesAsync();
     }
     
     public async Task<T?> Get(Guid id)
@@ -27,8 +27,12 @@ public abstract class BaseRepository<T> where T : class
     {
         var entity = await _dbSet.FindAsync(id);
         if (entity == null) return;
-        
+
         _dbSet.Remove(entity);
+    }
+
+    public async void SaveChange()
+    {
         await _dbContext.SaveChangesAsync();
     }
 }
