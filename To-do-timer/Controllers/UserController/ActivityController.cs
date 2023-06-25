@@ -12,7 +12,7 @@ namespace To_do_timer.Controllers;
 
 [ApiController]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-public class UserController : Controller
+public class UserController : Controller // todo название такое себе имхо, здесь вообще другое тоже имхо
 {
     private ManageBook _manageBook;
 
@@ -67,6 +67,7 @@ public class UserController : Controller
     
         if (book == null)
             return HttpContext.WithError<Book>(HttpStatusCode.NotAcceptable, "Такой книги нету ");
+        
         HttpContext.Response.StatusCode = StatusCodes.Status202Accepted;
         _manageBook.BookRepository.Delete(book);
         _manageBook.BookRepository.SaveChange();
@@ -74,7 +75,7 @@ public class UserController : Controller
     }
     
     [HttpDelete("status/delete/{id:guid}")]
-    public async Task<Result<Status>> DeleteStatus(Guid id)
+    public async Task<Result<Status>> DeleteStatus(Guid id) // сейчас любой пользователь может удалить данные любового другого пользвателя!
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
         var status = await _manageBook.StatusRepository.Get(id);
@@ -86,10 +87,32 @@ public class UserController : Controller
 
         return HttpContext.WithResult(HttpStatusCode.Accepted, status);
     }
-
-    /*// [HttpPost("end-day")]
-    /*#1#public async Task<Result<Event>> EndDay(DateTime time)
+    
+    /*[HttpPost("status/create")]
+    public async Task<Result<Status>> CreateStatus([FromBody] StatusRequest statusRequest)
     {
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+        
+
+        /*
+        return HttpContext.WithResult(HttpStatusCode.Accepted, status);#1#
+    }*/
+    
+    /*[HttpGet("book/{bookId:guid}/statuses")]
+    public async Task<Result<List<Status>>> GetAllStatusByBook(Guid bookId) // получение всей инфы из дневника
+    {
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+        var statues = await _manageBook.GetStatusesByBook(bookId);
+
+        return HttpContext.WithResult<List<Status>>(HttpStatusCode.Accepted, statues);
+    }*/
+
+    
+     /*
+     [HttpPost("end-day")]
+    public async Task<Result<Event>> EndDay()
+    {
+        var userId = new Guid(User.FindFirst("id")?.Value!);
         
     }*/
 }

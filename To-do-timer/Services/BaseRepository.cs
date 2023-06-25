@@ -18,6 +18,7 @@ public abstract class BaseRepository<T> where T : class
         _dbSet.Add(entity);
     }
     
+    
     public async Task<T?> Get(Guid id)
     {
         return await _dbSet.FindAsync(id);

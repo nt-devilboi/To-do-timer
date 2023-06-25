@@ -44,29 +44,14 @@ namespace To_do_timer.Migrations.Book
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("To_do_timer.Models.Book.BookStatus", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uuid");
-
-                    b.ToTable("BookStatus");
-                });
-
             modelBuilder.Entity("To_do_timer.Models.Book.Event", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Desc")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("timestamp with time zone");
@@ -75,6 +60,10 @@ namespace To_do_timer.Migrations.Book
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Events");
                 });
@@ -99,6 +88,35 @@ namespace To_do_timer.Migrations.Book
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("To_do_timer.Models.Book.Event", b =>
+                {
+                    b.HasOne("To_do_timer.Models.Book.Book", "Book")
+                        .WithMany("Events")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("To_do_timer.Models.Book.Status", "Status")
+                        .WithMany("Events")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("To_do_timer.Models.Book.Book", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("To_do_timer.Models.Book.Status", b =>
+                {
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }

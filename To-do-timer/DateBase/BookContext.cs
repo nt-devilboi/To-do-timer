@@ -6,7 +6,6 @@ namespace To_do_timer.DateBase;
     public class BookContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
-        public DbSet<BookStatus> BookStatus { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Status> Statuses { get; set; }
 
@@ -21,7 +20,14 @@ namespace To_do_timer.DateBase;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<BookStatus>().HasNoKey();
+            modelBuilder.Entity<Event>()
+                .HasOne(e => e.Book)
+                .WithMany(b => b.Events)
+                .HasForeignKey(e => e.BookId);
+
+            modelBuilder.Entity<Event>()
+                .HasOne(e => e.Status)
+                .WithMany(s => s.Events)
+                .HasForeignKey(e => e.StatusId);
         }
     }
