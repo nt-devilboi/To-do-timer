@@ -20,7 +20,7 @@ public class UserController : Controller // todo название такое с�
     {
         _manageBook = manageBook;
     }
-    
+
     // todo реализация получение книжки по id; можно попрожбовать использовать чистый sql для таких запросв
     [HttpPost("book/create")]
     public async Task<IActionResult> CreateBook([FromBody] RequestBook requestBook)
@@ -63,41 +63,75 @@ public class UserController : Controller // todo название такое с�
     [HttpDelete("book/delete/{id:guid}")]
     public async Task<Result<Book>> DeleteBook(Guid id)
     {
-        var book =  await _manageBook.BookRepository.Get(id);
-    
+        var book = await _manageBook.BookRepository.Get(id);
+
         if (book == null)
             return HttpContext.WithError<Book>(HttpStatusCode.NotAcceptable, "Такой книги нету ");
-        
+
         HttpContext.Response.StatusCode = StatusCodes.Status202Accepted;
         _manageBook.BookRepository.Delete(book);
         _manageBook.BookRepository.SaveChange();
         return HttpContext.WithResult<Book>(HttpStatusCode.Accepted, null);
     }
-    
+
     [HttpDelete("status/delete/{id:guid}")]
-    public async Task<Result<Status>> DeleteStatus(Guid id) // сейчас любой пользователь может удалить данные любового другого пользвателя!
+    public async Task<Result<Status>> DeleteStatus(Guid id)
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
         var status = await _manageBook.StatusRepository.Get(id);
+
         if (status == null)
             return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "с таким именем нету");
-        
+        if (status.UserId != userId)
+            return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "эта книжка другого пользователя");
+
         _manageBook.StatusRepository.Delete(id);
         _manageBook.StatusRepository.SaveChange();
 
         return HttpContext.WithResult(HttpStatusCode.Accepted, status);
     }
-    
-    /*[HttpPost("status/create")]
-    public async Task<Result<Status>> CreateStatus([FromBody] StatusRequest statusRequest)
+
+    [HttpPost("status/create")]
+    public async Task<Result<Status>>
+        CreateStatus([FromBody] StatusRequest statusRequest) // todo Какое должно быть возращаемое значиен??
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
+        var status = await _manageBook.StatusRepository.FirstOrDefault(statusRequest.Name, userId);
+        if (status != null)
+            return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "с таким именем уже есть");
+        
+        status = new Status()
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            Desc = statusRequest.Desc,
+            Name = statusRequest.Name
+        };
         
 
-        /*
-        return HttpContext.WithResult(HttpStatusCode.Accepted, status);#1#
-    }*/
+        _manageBook.StatusRepository.Add(status);
+        _manageBook.StatusRepository.SaveChange();
+
+        var statusSave = await _manageBook.StatusRepository.Get(status.Id);
+
+        if (status == null)
+            return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "статус не сохранён");
+        
+        return HttpContext.WithResult(HttpStatusCode.Accepted, statusSave);
+    }
+
+    [HttpGet("status")]
+    public async Task<Result<List<Status>>> GetAllStatuses() // todo Какое должно быть возращаемое значиен??
+    {
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+       
+
+        var statuses = await _manageBook.StatusRepository.GetAllByUser(userId);
+        return HttpContext.WithResult(HttpStatusCode.Accepted, statuses);
+    }
     
+    
+
     /*[HttpGet("book/{bookId:guid}/statuses")]
     public async Task<Result<List<Status>>> GetAllStatusByBook(Guid bookId) // получение всей инфы из дневника
     {
@@ -107,12 +141,12 @@ public class UserController : Controller // todo название такое с�
         return HttpContext.WithResult<List<Status>>(HttpStatusCode.Accepted, statues);
     }*/
 
-    
-     /*
-     [HttpPost("end-day")]
-    public async Task<Result<Event>> EndDay()
-    {
-        var userId = new Guid(User.FindFirst("id")?.Value!);
-        
-    }*/
+
+    /*
+    [HttpPost("end-day")]
+   public async Task<Result<Event>> EndDay()
+   {
+       var userId = new Guid(User.FindFirst("id")?.Value!);
+       
+   }*/
 }

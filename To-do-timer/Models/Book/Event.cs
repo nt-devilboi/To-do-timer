@@ -1,6 +1,6 @@
 namespace To_do_timer.Models.Book;
 
-public class Event
+public class Event : IEntity
 {
     public Guid Id { get; set; }
     

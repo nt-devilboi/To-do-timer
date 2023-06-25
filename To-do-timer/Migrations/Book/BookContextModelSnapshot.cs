@@ -78,12 +78,12 @@ namespace To_do_timer.Migrations.Book
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("IdUser")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

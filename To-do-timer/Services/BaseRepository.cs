@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using To_do_timer.Models.Book;
 
 namespace To_do_timer.Services;
 
-public abstract class BaseRepository<T> where T : class
+public abstract class BaseRepository<T> where T : class, IEntity
 {
-    private DbSet<T> _dbSet;
-    private DbContext _dbContext;
+    protected DbSet<T> _dbSet;
+    protected DbContext _dbContext;
 
     public BaseRepository(DbContext dbContext)
     {
@@ -18,6 +19,10 @@ public abstract class BaseRepository<T> where T : class
         _dbSet.Add(entity);
     }
     
+    public async void Delete(T book) // todo сейчас можно удалить и по id и по целому элементу, а нужно ли это?
+    {
+        _dbSet.Remove(book);
+    }
     
     public async Task<T?> Get(Guid id)
     {
@@ -26,10 +31,10 @@ public abstract class BaseRepository<T> where T : class
 
     public async void Delete(Guid id) // крутой delete как понять, что мы реально удалили?
     {
-        var entity = await _dbSet.FindAsync(id);
-        if (entity == null) return;
+        var result = await _dbSet.FindAsync(id);
+        if (result == null) return;
 
-        _dbSet.Remove(entity);
+        _dbSet.Remove(result);
     }
 
     public async void SaveChange()

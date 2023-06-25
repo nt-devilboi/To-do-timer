@@ -4,18 +4,14 @@ using To_do_timer.Models.Book;
 
 namespace To_do_timer.Services;
 
-public class StatusRepository : BaseRepository<Status>
+public class StatusRepository : BaseUserRepository<Status>
 {
-    private DbContext _dbContext;
-    private DbSet<Status> _dbSet;
     public StatusRepository(BookContext bookContext) : base(bookContext)
     {
-        _dbContext = bookContext;
-        _dbSet = bookContext.Statuses;
     }
 
-    public async Task<Status?> FirstOrDefault(string nameStatus, Guid userId)
+    public async Task<Status?> FirstOrDefault(string nameStatus, Guid userId) // можно вынести за абстракт!!
     {
-        return await _dbSet.FirstOrDefaultAsync(e => e.Name == nameStatus && e.IdUser == userId);
+        return await _dbSet.FirstOrDefaultAsync(e => e.Name == nameStatus && e.UserId == userId);
     }
 }
