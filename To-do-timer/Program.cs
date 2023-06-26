@@ -26,6 +26,10 @@ builder.Services.AddScoped<EventRepository>();
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<UserContext>()
     .AddDefaultTokenProviders();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore // хз насколько это правильно
+    );
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

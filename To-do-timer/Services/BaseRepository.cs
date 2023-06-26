@@ -3,10 +3,10 @@ using To_do_timer.Models.Book;
 
 namespace To_do_timer.Services;
 
-public abstract class BaseRepository<T> where T : class, IEntity
+public abstract class BaseRepository<T>: IRepository<T> where T : class, IEntity
 {
     protected DbSet<T> _dbSet;
-    protected DbContext _dbContext;
+    private DbContext _dbContext;
 
     public BaseRepository(DbContext dbContext)
     {
@@ -18,18 +18,18 @@ public abstract class BaseRepository<T> where T : class, IEntity
     {
         _dbSet.Add(entity);
     }
-    
-    public async void Delete(T book) // todo сейчас можно удалить и по id и по целому элементу, а нужно ли это?
+
+    public async void Remove(T book) // todo сейчас можно удалить и по id и по целому элементу, а нужно ли это?
     {
         _dbSet.Remove(book);
     }
-    
+
     public async Task<T?> Get(Guid id)
     {
         return await _dbSet.FindAsync(id);
     }
 
-    public async void Delete(Guid id) // крутой delete как понять, что мы реально удалили?
+    public async void Remove(Guid id) // крутой delete как понять, что мы реально удалили?
     {
         var result = await _dbSet.FindAsync(id);
         if (result == null) return;
@@ -37,8 +37,8 @@ public abstract class BaseRepository<T> where T : class, IEntity
         _dbSet.Remove(result);
     }
 
-    public async void SaveChange()
+    public void SaveChange()
     {
-        await _dbContext.SaveChangesAsync();
+        _dbContext.SaveChanges(); // есть async
     }
 }

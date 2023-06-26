@@ -12,11 +12,6 @@ public class BookRepository: BaseUserRepository<Book>
     {
         _db = db;
     }
-    public void Create(Guid userId, string name, string desc)
-    {
-        var bookId = Guid.NewGuid();
-        _dbSet.Add(new Book() { UserId = userId, Desc = desc, Name = name, Id = bookId });
-    }
     
     // TODO формально не нужно, но пока хз
     public async Task<Book?> GetByUser(Guid userId, string name)

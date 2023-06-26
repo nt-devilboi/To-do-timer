@@ -62,3 +62,7 @@ C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-Timer\bin\Debug\net7.0\Microso
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-Timer\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-Timer\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-Timer\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
