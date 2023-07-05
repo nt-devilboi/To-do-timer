@@ -67,6 +67,22 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "Vostok.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[1.0.32-pre000071, )"
+            },
+            "Vostok.Logging.Console": {
+              "target": "Package",
+              "version": "[1.0.10-pre000021, )"
+            },
+            "Vostok.Logging.File": {
+              "target": "Package",
+              "version": "[1.0.23-pre000032, )"
+            },
+            "Vostok.Logging.Microsoft": {
+              "target": "Package",
+              "version": "[2.0.14-pre000017, )"
             }
           },
           "imports": [

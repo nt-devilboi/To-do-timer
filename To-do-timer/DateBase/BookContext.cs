@@ -9,9 +9,7 @@ namespace To_do_timer.DateBase;
         public DbSet<Event> Events { get; set; }
         public DbSet<Status> Statuses { get; set; }
 
-        public BookContext(DbContextOptions<BookContext> options) : base(options)
-        {
-        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,5 +27,13 @@ namespace To_do_timer.DateBase;
                 .HasOne(e => e.Status)
                 .WithMany(s => s.Events)
                 .HasForeignKey(e => e.StatusId);
+
+            modelBuilder.Entity<Event>()
+                .Navigation(x => x.Book).
+                UsePropertyAccessMode(PropertyAccessMode.Property);
+            
+            modelBuilder.Entity<Event>()
+                .Navigation(x => x.Status).
+                UsePropertyAccessMode(PropertyAccessMode.Property);
         }
     }

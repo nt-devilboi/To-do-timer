@@ -4,13 +4,13 @@ namespace To_do_timer.Services;
 
 public class ManageBook
 {
-    public readonly BookRepository BookRepository;
-    public readonly StatusRepository StatusRepository;
-    public readonly EventRepository EventRepository;
+    public readonly IRepository<Book> BookRepository;
+    public readonly IRepository<Status> StatusRepository;
+    public readonly IRepository<Event> EventRepository;
  
-    public ManageBook(BookRepository bookRepository, StatusRepository statusRepository, EventRepository eventRepository)
+    public ManageBook(IRepository<Book> repository, IRepository<Status> statusRepository, IRepository<Event> eventRepository)
     {
-        BookRepository = bookRepository;
+        BookRepository = repository;
         StatusRepository = statusRepository;
         EventRepository = eventRepository;
     }

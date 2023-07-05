@@ -66,3 +66,10 @@ C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Microso
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Context.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.Abstractions.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.Console.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.Context.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.Formatting.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.Microsoft.dll
+C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\bin\Debug\net7.0\Vostok.Logging.File.dll

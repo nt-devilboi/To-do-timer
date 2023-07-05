@@ -1,6 +1,6 @@
 namespace To_do_timer.Models.Book;
 
-public class Book : IEntityWithUser
+public class Book : IUserConnect
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

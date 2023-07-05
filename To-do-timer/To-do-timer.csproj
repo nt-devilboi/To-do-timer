@@ -18,6 +18,10 @@
         </PackageReference>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Vostok.Logging.Abstractions" Version="1.0.32-pre000071" />
+        <PackageReference Include="Vostok.Logging.Console" Version="1.0.10-pre000021" />
+        <PackageReference Include="Vostok.Logging.File" Version="1.0.23-pre000032" />
+        <PackageReference Include="Vostok.Logging.Microsoft" Version="2.0.14-pre000017" />
     </ItemGroup>
    
 </Project>

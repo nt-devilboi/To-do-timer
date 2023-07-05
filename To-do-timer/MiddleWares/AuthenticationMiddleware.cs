@@ -1,25 +1,35 @@
+using System.Net;
+using System.Security.Claims;
+using BBServer;
+using BBServer.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using To_do_timer.Models;
+
 namespace To_do_timer.MiddleWares;
 
 public class AuthenticationMiddleware
 {
     private readonly RequestDelegate _next;
-    
+
     public AuthenticationMiddleware(RequestDelegate next)
     {
         _next = next;
     }
-    
-    public Task Invoke(HttpContext httpContext)
+
+    public async Task Invoke(HttpContext httpContext)
     {
-        var path = httpContext.Request.Path;
-        if(path.HasValue && path.Value.StartsWith("/admin"))
+        var userId = httpContext.User.FindFirstValue("id");
+        if (httpContext.User.Identity?.IsAuthenticated ?? false)
         {
-            if (httpContext.Session.GetString("username") == null)
+            var entityByUser = httpContext.Request.Form["userId"];
+            if (userId != entityByUser)
             {
-                httpContext.Response.Redirect("/login/index");
+                httpContext.Response.StatusCode = 404;
+                await httpContext.Response.WriteAsync("Эта книжка другого юзера");
             }
         }
-        return _next(httpContext);
+        
+        await _next(httpContext);
     }
 }
 

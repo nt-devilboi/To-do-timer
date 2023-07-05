@@ -1240,6 +1240,118 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "Vostok.Context/0.1.7-pre000014": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Vostok.Context.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Context.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.Abstractions/1.0.32-pre000071": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Vostok.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.Console/1.0.10-pre000021": {
+        "type": "package",
+        "dependencies": {
+          "Vostok.Logging.Abstractions": "1.0.31-pre000061",
+          "Vostok.Logging.Formatting": "1.0.14-pre000035"
+        },
+        "compile": {
+          "lib/net6.0/Vostok.Logging.Console.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.Console.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.Context/1.0.5-pre000023": {
+        "type": "package",
+        "dependencies": {
+          "Vostok.Context": "0.1.7-pre000014",
+          "Vostok.Logging.Abstractions": "1.0.31-pre000060"
+        },
+        "compile": {
+          "lib/net6.0/Vostok.Logging.Context.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.Context.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.File/1.0.23-pre000032": {
+        "type": "package",
+        "dependencies": {
+          "Vostok.Logging.Abstractions": "1.0.31-pre000060",
+          "Vostok.Logging.Formatting": "1.0.14-pre000034"
+        },
+        "compile": {
+          "lib/net6.0/Vostok.Logging.File.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.File.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.Formatting/1.0.14-pre000035": {
+        "type": "package",
+        "dependencies": {
+          "Vostok.Logging.Abstractions": "1.0.31-pre000060"
+        },
+        "compile": {
+          "lib/net6.0/Vostok.Logging.Formatting.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.Formatting.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Vostok.Logging.Microsoft/2.0.14-pre000017": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "2.0.0",
+          "Vostok.Logging.Abstractions": "1.0.31-pre000061",
+          "Vostok.Logging.Context": "1.0.5-pre000023",
+          "Vostok.Logging.Formatting": "1.0.14-pre000035"
+        },
+        "compile": {
+          "lib/net6.0/Vostok.Logging.Microsoft.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Vostok.Logging.Microsoft.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
@@ -2904,6 +3016,118 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Vostok.Context/0.1.7-pre000014": {
+      "sha512": "HFoRp8TKC0vxL6nOHgjeUoZyE13wBUEb2BSl86H92U0mS4MYQEpnF32UbTurFE5l/n1vJwdWLN8bzb0KJzBU4Q==",
+      "type": "package",
+      "path": "vostok.context/0.1.7-pre000014",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Context.dll",
+        "lib/net6.0/Vostok.Context.xml",
+        "lib/netstandard2.0/Vostok.Context.dll",
+        "lib/netstandard2.0/Vostok.Context.xml",
+        "vostok.context.0.1.7-pre000014.nupkg.sha512",
+        "vostok.context.nuspec"
+      ]
+    },
+    "Vostok.Logging.Abstractions/1.0.32-pre000071": {
+      "sha512": "mXjYozbeAtFqOkRe9QDIEmbdVsJUuBScnyJMqh20luhxxT606z7vXZcuytmYm1I0ZCk/M2UajdIHHbeTUmHTiw==",
+      "type": "package",
+      "path": "vostok.logging.abstractions/1.0.32-pre000071",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.Abstractions.dll",
+        "lib/net6.0/Vostok.Logging.Abstractions.xml",
+        "lib/netstandard2.0/Vostok.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Vostok.Logging.Abstractions.xml",
+        "vostok.logging.abstractions.1.0.32-pre000071.nupkg.sha512",
+        "vostok.logging.abstractions.nuspec"
+      ]
+    },
+    "Vostok.Logging.Console/1.0.10-pre000021": {
+      "sha512": "lag1B6eakojFSJhREseJZmk2AN69/lY+neSRckyuBwR+PihsY+eKcOarRH7qy7rvzj44fFPWPZnxMQXVglsW6A==",
+      "type": "package",
+      "path": "vostok.logging.console/1.0.10-pre000021",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.Console.dll",
+        "lib/net6.0/Vostok.Logging.Console.xml",
+        "lib/netstandard2.0/Vostok.Logging.Console.dll",
+        "lib/netstandard2.0/Vostok.Logging.Console.xml",
+        "vostok.logging.console.1.0.10-pre000021.nupkg.sha512",
+        "vostok.logging.console.nuspec"
+      ]
+    },
+    "Vostok.Logging.Context/1.0.5-pre000023": {
+      "sha512": "o3ba+t5m9QD07KilYfiEuOP1m/8lyrvYQaVxtN9/kVumJy8ooJ92EmM/l3LtqWrKek9bjzXDNRJ0p2POu4qakA==",
+      "type": "package",
+      "path": "vostok.logging.context/1.0.5-pre000023",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.Context.dll",
+        "lib/net6.0/Vostok.Logging.Context.xml",
+        "lib/netstandard2.0/Vostok.Logging.Context.dll",
+        "lib/netstandard2.0/Vostok.Logging.Context.xml",
+        "vostok.logging.context.1.0.5-pre000023.nupkg.sha512",
+        "vostok.logging.context.nuspec"
+      ]
+    },
+    "Vostok.Logging.File/1.0.23-pre000032": {
+      "sha512": "DBGixUUP0kpP6wU90YwXld5VygKdJk8o6yXtTJJLkQmtpzsblVoGj61pYSKRyjATfW1nW3k4AIJWCxW99RGuWA==",
+      "type": "package",
+      "path": "vostok.logging.file/1.0.23-pre000032",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.File.dll",
+        "lib/net6.0/Vostok.Logging.File.xml",
+        "lib/netstandard2.0/Vostok.Logging.File.dll",
+        "lib/netstandard2.0/Vostok.Logging.File.xml",
+        "vostok.logging.file.1.0.23-pre000032.nupkg.sha512",
+        "vostok.logging.file.nuspec"
+      ]
+    },
+    "Vostok.Logging.Formatting/1.0.14-pre000035": {
+      "sha512": "SvFhrAigvcL1R+K899EARqkT2i++54vABe3TL6q9rRwY2t4wlGcEu5wziU/AEqDRFQF38G/o4Ge6aiAYL/utnw==",
+      "type": "package",
+      "path": "vostok.logging.formatting/1.0.14-pre000035",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.Formatting.dll",
+        "lib/net6.0/Vostok.Logging.Formatting.xml",
+        "lib/netstandard2.0/Vostok.Logging.Formatting.dll",
+        "lib/netstandard2.0/Vostok.Logging.Formatting.xml",
+        "vostok.logging.formatting.1.0.14-pre000035.nupkg.sha512",
+        "vostok.logging.formatting.nuspec"
+      ]
+    },
+    "Vostok.Logging.Microsoft/2.0.14-pre000017": {
+      "sha512": "XX5Dp2Vtq5Rmrl0R2m2oblQtLXHEkVA/gEFcXeqLScC/tAAouy/cP6Q9o1TXPNItdMw3jkLvT5uBsKwbcTRCow==",
+      "type": "package",
+      "path": "vostok.logging.microsoft/2.0.14-pre000017",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Vostok.Logging.Microsoft.dll",
+        "lib/net6.0/Vostok.Logging.Microsoft.xml",
+        "lib/netstandard2.0/Vostok.Logging.Microsoft.dll",
+        "lib/netstandard2.0/Vostok.Logging.Microsoft.xml",
+        "vostok.logging.microsoft.2.0.14-pre000017.nupkg.sha512",
+        "vostok.logging.microsoft.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -2914,7 +3138,11 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.4",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0-preview.2",
-      "Swashbuckle.AspNetCore >= 6.2.3"
+      "Swashbuckle.AspNetCore >= 6.2.3",
+      "Vostok.Logging.Abstractions >= 1.0.32-pre000071",
+      "Vostok.Logging.Console >= 1.0.10-pre000021",
+      "Vostok.Logging.File >= 1.0.23-pre000032",
+      "Vostok.Logging.Microsoft >= 2.0.14-pre000017"
     ]
   },
   "packageFolders": {
@@ -2983,6 +3211,22 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.2.3, )"
+          },
+          "Vostok.Logging.Abstractions": {
+            "target": "Package",
+            "version": "[1.0.32-pre000071, )"
+          },
+          "Vostok.Logging.Console": {
+            "target": "Package",
+            "version": "[1.0.10-pre000021, )"
+          },
+          "Vostok.Logging.File": {
+            "target": "Package",
+            "version": "[1.0.23-pre000032, )"
+          },
+          "Vostok.Logging.Microsoft": {
+            "target": "Package",
+            "version": "[2.0.14-pre000017, )"
           }
         },
         "imports": [
