@@ -30,11 +30,11 @@ public class
 
     // todo реализация получение книжки по id; можно попрожбовать использовать чистый sql для таких запросв
     [HttpPost("book/create")]
-    public async Task<IActionResult> CreateBook([FromBody] RequestBook requestBook)
+    public async Task<Result<Book>> CreateBook([FromBody] RequestBook requestBook)
     {
         var userId = new Guid(User.FindFirst("id")?.Value!); // выглядит как кринж код!
         if (await _manageBook.BookRepository.FirstOrDefaultAsync(b => b.UserId ==  userId && b.Name == requestBook.Name) != null)
-            return Ok("Такая уже есть");
+            return HttpContext.WithError<Book>(HttpStatusCode.Conflict, "такая книга уже есть");
 
         var book = new Book()
         {
@@ -47,8 +47,8 @@ public class
         _manageBook.BookRepository.Add(book);
         _manageBook.BookRepository.SaveChange();
 
-        book = await _manageBook.BookRepository.FirstOrDefaultAsync(b => b.UserId == userId && b.Name == requestBook.Name);
-        return Ok($"{book}");
+        book = await _manageBook.BookRepository.GetById(book.Id);
+        return HttpContext.WithResult(HttpStatusCode.OK, book);
     }
 
     // они идентичны, но я хз может потом буду усложнять эти таблицы
@@ -78,7 +78,7 @@ public class
         if (statusSave == null)
             return HttpContext.WithError<Status>(HttpStatusCode.Conflict, "статус не сохранён");
 
-        return HttpContext.WithResult(HttpStatusCode.Accepted, statusSave);
+        return HttpContext.WithResult(HttpStatusCode.OK, statusSave);
     }
     
     [HttpPost("event/create")]

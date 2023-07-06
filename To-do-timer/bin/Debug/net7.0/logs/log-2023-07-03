@@ -1,0 +1,202 @@
+﻿2023-07-03 08:37:09,968 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:37:10,026 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:37:10,029 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:37:10,032 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:37:10,034 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:37:10,034 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:38:42,106 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (52ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-03 08:38:42,382 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (8ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2023-07-03 08:38:52,258 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-03 08:38:52,332 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2023-07-03 08:39:00,694 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:39:00,778 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (7ms) [Parameters=[@__book_Id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT e."Id", e."BookId", e."Start", e."StatusId", b."Id", b."Desc", b."Name", b."UserId", s."Id", s."Desc", s."Name", s."UserId"
+FROM "Events" AS e
+INNER JOIN "Books" AS b ON e."BookId" = b."Id"
+INNER JOIN "Statuses" AS s ON e."StatusId" = s."Id"
+WHERE e."BookId" = @__book_Id_0
+2023-07-03 08:40:09,261 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."UserId" = @__userId_0
+2023-07-03 08:44:36,908 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:44:36,954 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:44:36,956 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:44:36,957 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:44:36,958 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:44:36,958 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:44:49,873 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (41ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:44:49,966 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:45:08,286 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."UserId" = @__userId_0
+2023-07-03 08:45:22,880 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:45:22,882 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:47:10,401 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:47:10,462 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:47:10,464 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:47:10,466 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:47:10,466 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:47:10,466 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:47:18,217 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (44ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:47:18,316 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:47:18,320 INFO  firsasafdftBook
+2023-07-03 08:47:18,328 ERROR [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at To_do_timer.Controllers.UserController.Start(BookIdRequest bookIdRequest) in C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\Controllers\UserController\UserController.cs:line 166
+   at lambda_method20(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-07-03 08:47:52,097 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:47:52,100 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:47:52,100 INFO  firsasafdftBook
+2023-07-03 08:47:52,101 ERROR [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at To_do_timer.Controllers.UserController.Start(BookIdRequest bookIdRequest) in C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\Controllers\UserController\UserController.cs:line 166
+   at lambda_method20(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-07-03 08:47:56,165 INFO  [Microsoft.Hosting.Lifetime] Application is shutting down...
+2023-07-03 08:48:01,710 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:48:01,753 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:48:01,755 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:48:01,757 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:48:01,757 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:48:01,758 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:48:12,155 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (42ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:48:12,250 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:50:31,674 INFO  [Microsoft.Hosting.Lifetime] Application is shutting down...
+2023-07-03 08:50:37,526 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:50:37,569 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:50:37,571 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:50:37,573 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:50:37,573 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:50:37,573 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:50:45,613 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (43ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:50:45,715 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__id_0 AND s."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:57:52,243 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-03 08:57:52,286 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-03 08:57:52,288 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-03 08:57:52,293 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-03 08:57:52,294 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-03 08:57:52,295 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-03 08:58:02,625 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (43ms) [Parameters=[@__id_0='?' (DbType = Guid), @__userId_1='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."Desc", b."Name", b."UserId"
+FROM "Books" AS b
+WHERE b."Id" = @__id_0 AND b."UserId" = @__userId_1
+LIMIT 1
+2023-07-03 08:58:02,805 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Desc", s."Name", s."UserId"
+FROM "Statuses" AS s
+WHERE s."Id" = @__get_Item_0
+LIMIT 1
+2023-07-03 08:58:02,992 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Events" ("Id", "BookId", "Start", "StatusId")
+VALUES (@p0, @p1, @p2, @p3);

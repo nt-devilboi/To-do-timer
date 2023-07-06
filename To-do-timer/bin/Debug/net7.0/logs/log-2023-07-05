@@ -1,0 +1,122 @@
+﻿2023-07-05 12:47:38,457 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-05 12:47:38,511 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-05 12:47:38,513 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-05 12:47:38,515 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-05 12:47:38,516 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-05 12:47:38,516 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-05 12:48:11,374 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (51ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-05 12:48:11,660 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (8ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2023-07-05 13:39:24,531 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-05 13:39:24,581 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-05 13:39:24,584 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-05 13:39:24,586 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-05 13:39:24,587 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-05 13:39:24,587 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-05 13:39:50,655 ERROR [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Incorrect Content-Type: application/json
+   at Microsoft.AspNetCore.Http.Features.FormFeature.ReadForm()
+   at To_do_timer.MiddleWares.AuthenticationMiddleware.Invoke(HttpContext httpContext) in C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\MiddleWares\AuthenticationMiddleware.cs:line 22
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-07-05 13:41:25,665 INFO  [Microsoft.Hosting.Lifetime] Application is shutting down...
+2023-07-05 13:41:29,796 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-05 13:41:29,842 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-05 13:41:29,845 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-05 13:41:29,847 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-05 13:41:29,847 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-05 13:41:29,847 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-05 13:41:40,921 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (55ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-05 13:41:41,246 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (15ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = Boolean), @p14='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2023-07-05 13:41:41,275 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2023-07-05 13:41:41,303 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2023-07-05 13:41:41,312 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2023-07-05 13:41:41,337 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__p_0='?', @__p_1='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."UserId", a."RoleId"
+FROM "AspNetUserRoles" AS a
+WHERE a."UserId" = @__p_0 AND a."RoleId" = @__p_1
+LIMIT 1
+2023-07-05 13:41:41,342 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (0ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2023-07-05 13:41:41,355 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-05 13:41:41,405 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p16='?', @p2='?' (DbType = Int32), @p3='?', @p17='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?' (DbType = Boolean), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUserRoles" ("RoleId", "UserId")
+VALUES (@p0, @p1);
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p2, "ConcurrencyStamp" = @p3, "Email" = @p4, "EmailConfirmed" = @p5, "LockoutEnabled" = @p6, "LockoutEnd" = @p7, "NormalizedEmail" = @p8, "NormalizedUserName" = @p9, "PasswordHash" = @p10, "PhoneNumber" = @p11, "PhoneNumberConfirmed" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+2023-07-05 13:42:15,297 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-05 13:42:15,458 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2023-07-05 13:59:18,644 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-05 13:59:18,690 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-05 13:59:18,693 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-05 13:59:18,695 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-05 13:59:18,695 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-05 13:59:18,695 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-05 13:59:33,164 ERROR [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Incorrect Content-Type: application/json
+   at Microsoft.AspNetCore.Http.Features.FormFeature.ReadForm()
+   at To_do_timer.MiddleWares.AuthenticationMiddleware.Invoke(HttpContext httpContext) in C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer\MiddleWares\AuthenticationMiddleware.cs:line 24
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-07-05 15:26:06,209 INFO  [Microsoft.Hosting.Lifetime] Application is shutting down...
+2023-07-05 15:26:13,561 WARN  [Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2023-07-05 15:26:13,614 INFO  [Microsoft.Hosting.Lifetime] Now listening on: https://localhost:7278
+2023-07-05 15:26:13,617 INFO  [Microsoft.Hosting.Lifetime] Now listening on: http://localhost:5032
+2023-07-05 15:26:13,619 INFO  [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
+2023-07-05 15:26:13,620 INFO  [Microsoft.Hosting.Lifetime] Hosting environment: Development
+2023-07-05 15:26:13,620 INFO  [Microsoft.Hosting.Lifetime] Content root path: C:\Users\VOISTINU\RiderProjects\To-do-timer\To-do-timer
+2023-07-05 15:26:36,829 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (58ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2023-07-05 15:26:37,164 INFO  [Microsoft.EntityFrameworkCore.Database.Command] Executed DbCommand (7ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
