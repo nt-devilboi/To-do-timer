@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Security.Claims;
 using BBServer;
+using BBServer.Extensions;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +23,7 @@ namespace To_do_timer.Tests
         private ManageBook _fakeManageBook;
         private ILog _fakeLogger;
         private StatisticsController _controller;
-        private AnalyzerService _analyzerService;
+        private ParserStatsService _parserStatsService;
 
         [SetUp]
         public void Setup()
@@ -30,56 +31,100 @@ namespace To_do_timer.Tests
             var fakeStatusReposotory = A.Fake<IRepository<Status>>();
             var fakeBookRepository = A.Fake<IRepository<Book>>();
             var fakeEventRep = A.Fake<IRepository<Event>>();
-            _analyzerService = new AnalyzerService();
+            _parserStatsService = new ParserStatsService();
             _fakeManageBook = new ManageBook(fakeBookRepository, fakeStatusReposotory, fakeEventRep);
             _fakeLogger = A.Fake<ILog>();
-            _controller = new StatisticsController(_fakeManageBook, _fakeLogger, new AnalyzerService());
+            _controller = new StatisticsController(_fakeManageBook, _fakeLogger, new ParserStatsService());
         }
 
         [Test]
-        [TestCaseSource(nameof(TestCases))]
-        public void TestRanges(List<Event> events, TimeSpan expectedTime)
+        [TestCaseSource(nameof(TestDetailActiveTime))]
+        public void TestWithStatuses(List<Event> events, List<ResponseEventStats> expectedResponse)
         {
-            _analyzerService.CalculationTime(events).Minutes.Should().Be(expectedTime.Minutes);
-            _analyzerService.CalculationTime(events).Hours.Should().Be(expectedTime.Hours);
+
+            var responseEventsStats = _parserStatsService.GetActiveTimeWithStatus(events);
+            responseEventsStats.Should().BeEquivalentTo(expectedResponse);
+            
         }
 
-        public static IEnumerable<TestCaseData> TestCases()
+        public static IEnumerable<TestCaseData> TestDetailActiveTime()
+        {
+            yield return new TestCaseData(new List<Event>()
+            {
+                OneDayDefaultEvents(10,20,00, DataMemory.ExampleStatusCSharp),
+                OneDayDefaultEvents(10,25,00, DataMemory.ExampleStatusTypeScript),
+                OneDayDefaultEvents(10,30,00, DataMemory.ExampleStatusChill)
+            }, new List<ResponseEventStats>()
+            {
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusCSharp.ToResponse(), Time = new TimeSpan(0,5,0)
+                },
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusTypeScript.ToResponse(), Time = new TimeSpan(0,5,0)
+                },
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusChill.ToResponse(), Time = new TimeSpan(0,5,0)
+                }
+            });
+        }
+        
+        [Test]
+        [TestCaseSource(nameof(TestActiveTime))]
+        public void TestCalculate(List<Event> events, TimeSpan expectedTime)
+        {
+            var time = _parserStatsService.GetActiveTime(events);
+            time.Should().Be(expectedTime);
+        }
+
+        public static IEnumerable<TestCaseData> TestActiveTime()
         {
             yield return new TestCaseData(new List<Event>
             {
-                OneDayEvents(10, 20, 00),
-                OneDayEvents(10, 25, 00),
-                OneDayEvents(10, 30, 00)
-            }, new TimeSpan(0, 0, 10, 0));
+                OneDayDefaultEvents(10, 20, 00),
+                OneDayDefaultEvents(10, 25, 00),
+                OneDayDefaultEvents(10, 30, 00)
+            }, new TimeSpan(0, 0, 10, 0)).SetName("only minutes");
 
             yield return new TestCaseData(new List<Event>()
             {
-                OneDayEvents(11, 20, 00),
-                OneDayEvents(12, 20, 00),
-                OneDayEvents(13, 20, 00),
-            }, new TimeSpan(0, 2, 0, 0));
+                OneDayDefaultEvents(11, 20, 00),
+                OneDayDefaultEvents(12, 20, 00),
+                OneDayDefaultEvents(13, 20, 00),
+            }, new TimeSpan(0, 2, 0, 0)).SetName("only hours");
 
             yield return new TestCaseData(new List<Event>()
             {
-                OneDayEvents(11, 20, 04),
-                OneDayEvents(11, 20, 44),
-                OneDayEvents(11, 20, 55),
-            }, new TimeSpan(0, 0, 0, 51));
-            
+                OneDayDefaultEvents(11, 20, 04),
+                OneDayDefaultEvents(11, 20, 44),
+                OneDayDefaultEvents(11, 20, 55),
+            }, new TimeSpan(0, 0, 0, 51)).SetName("only seconds");
+
             yield return new TestCaseData(new List<Event>()
             {
-                OneDayEvents(13, 21, 21), 
-                OneDayEvents(14, 20, 55), // 0, 59, 34
-                OneDayEvents(16, 42, 30), // 2, 21, 26 
-            }, new TimeSpan(0, 3, 21, 0));
+                OneDayDefaultEvents(13, 21, 21),
+                OneDayDefaultEvents(14, 20, 55), // 0, 59, 34
+                OneDayDefaultEvents(16, 42, 30), // 2, 21, 26 
+            }, new TimeSpan(0, 3, 21, 9)).SetName("All");
         }
 
 
-        private static Event OneDayEvents(int hour, int minute, int second)
+        private static Event OneDayDefaultEvents(int hour, int minute, int second)
         {
             return new Event()
             {
+                Start = new DateTime(2023, 7, 6, hour, minute, second)
+            };
+        }
+        
+        private static Event OneDayDefaultEvents(int hour, int minute, int second, Status status)
+        {
+            return new Event()
+            {
+                StatusId = status.Id,
+                Status = status,
                 Start = new DateTime(2023, 7, 6, hour, minute, second)
             };
         }
