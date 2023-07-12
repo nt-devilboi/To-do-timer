@@ -3,11 +3,14 @@ using System.Net;
 using System.Security.Claims;
 using BBServer;
 using BBServer.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using To_do_timer.Models;
 using To_do_timer.Properties;
+using Vostok.Logging.Abstractions;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace To_do_timer.Controllers;
@@ -17,14 +20,33 @@ public class LoginController : Controller
 {
     private UserManager<User> _userManager;
     private RoleManager<IdentityRole> _roleManager;
+    private ILog _log;
 
-    public LoginController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+    public LoginController(UserManager<User> userManager,
+        RoleManager<IdentityRole> roleManager,
+        ILog log)
     {
+        _log = log;
         _userManager = userManager;
         _roleManager = roleManager;
     }
 
 
+    [HttpGet]
+    [Authorize(AuthenticationSchemes =
+        JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<Result<LoginResponse>> Get()
+    {
+        
+        var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+        
+        _log.Info(userName);
+        
+        if (userName == null)
+            return HttpContext.WithError<LoginResponse>(HttpStatusCode.Unauthorized, "Нету токена");
+
+        return HttpContext.WithResult(HttpStatusCode.OK, new LoginResponse() { UserName = userName });
+    }
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] UserAuth user)
@@ -58,7 +80,7 @@ public class LoginController : Controller
 
     [HttpPost]
     [Route("Login")]
-    public async Task<Result<LoginResponse>> Login([FromBody] UserLogin model)
+    public async Task<Result<TokenResponse>> Login([FromBody] UserLogin model)
     {
         var user = await _userManager.FindByNameAsync(model.Username);
         if (user != null && await _userManager.CheckPasswordAsync(user ,model.Password))
@@ -77,15 +99,14 @@ public class LoginController : Controller
                userClaims.Add(new Claim(ClaimTypes.Role, userRole)) ;
             }
             var token = GetToken(userClaims);
-            return HttpContext.WithResult(HttpStatusCode.Created, new LoginResponse()
+            return HttpContext.WithResult(HttpStatusCode.OK, new TokenResponse()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token), 
                 expriration = token.ValidTo
             });
         }
 
-        HttpContext.Response.StatusCode = 404;
-        return HttpContext.WithError<LoginResponse>(HttpStatusCode.NotAcceptable,"Такого юзера нету ");
+        return HttpContext.WithError<TokenResponse>(HttpStatusCode.NotFound,"Такого юзера нету ");
     }
 
     [HttpDelete]

@@ -164,9 +164,16 @@ public class
     }
 
     [HttpGet("books")]
-    public async Task<Result<List<Book?>>> GetUserBooks()
+    public async Task<Result<List<BookResponse>>> GetUserBooks()
     {
-        return await GetAllEntityByUser(_manageBook.BookRepository);
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+
+        var bookResponses = (await _manageBook.BookRepository.Where(e => e.UserId == userId))?.Select(b => b.ToResponse()).ToList();
+        
+        if (bookResponses == null)
+            return HttpContext.WithError<List<BookResponse>>(HttpStatusCode.NotFound, "такой книжки нету");
+        
+        return  HttpContext.WithResult(HttpStatusCode.OK, bookResponses);
     }
 
     [HttpGet("book/{id:guid}")]
@@ -255,7 +262,7 @@ public class
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
 
-        var statuses = await repositoryWithUser.Where(e => e.UserId == userId);
+        var statuses = (await repositoryWithUser.Where(e => e.UserId == userId));
         return  HttpContext.WithResult(HttpStatusCode.OK, statuses.ToList());
     }
 
