@@ -68,8 +68,7 @@ public class
             Desc = statusRequest.Desc,
             Name = statusRequest.Name
         };
-
-
+        
         _manageBook.StatusRepository.Add(status);
         _manageBook.StatusRepository.SaveChange();
 
@@ -86,7 +85,7 @@ public class
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
 
-        var book = (await GetBook(bookIdRequest.BookId)).Value;
+        var book = await _manageBook.BookRepository.GetById(bookIdRequest.BookId);
         var status = await _manageBook.StatusRepository.GetById(AdminStatuses.UnknownStatusId); // можно вынести это за метод!!!
        
         if (status == null)
@@ -118,8 +117,8 @@ public class
     {
         var userId = new Guid(User.FindFirst("id")?.Value!);
 
-        var book = (await GetBook(eventRequest.BookId)).Value;
-        var status = (await GetStatus(eventRequest.StatusId)).Value;
+        var book = await _manageBook.BookRepository.GetById(eventRequest.BookId);
+        var status = await _manageBook.StatusRepository.GetById(eventRequest.StatusId); 
 
         if (book == null || status == null)
             return HttpContext.WithError<Event>(HttpStatusCode.NotAcceptable, "либо нету такой книжки либо статуса");
@@ -177,9 +176,15 @@ public class
     }
 
     [HttpGet("book/{id:guid}")]
-    public async Task<Result<Book>> GetBook(Guid id)
+    public async Task<Result<BookResponse>> GetBook(Guid id)
     {
-        return await GetEntityByUser(_manageBook.BookRepository, id);
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+
+        var entity = await _manageBook.BookRepository.FirstOrDefaultAsync(e => e.Id == id && e.UserId  == userId);
+        if (entity == null)
+            return HttpContext.WithError<BookResponse>(HttpStatusCode.NotFound, "У данного юзера этих данных нет");
+
+        return HttpContext.WithResult(HttpStatusCode.OK, entity.ToResponse());
     }
 
     [HttpDelete("book/{id:guid}")] 
@@ -192,12 +197,19 @@ public class
     public async Task<Result<Status>> DeleteStatus(Guid id)
     {
         return await RemoveEntityByUser(_manageBook.StatusRepository, id);
-    }
+    }    
 
-    [HttpGet("status")]
-    public async Task<Result<List<Status?>>> GetAllStatuses() // todo Какое должно быть возращаемое значиен??
+    [HttpGet("statuses")]
+    public async Task<Result<List<StatusResponse?>>> GetAllStatuses() // todo Какое должно быть возращаемое значиен??
     {
-        return await GetAllEntityByUser(_manageBook.StatusRepository);
+        var userId = new Guid(User.FindFirst("id")?.Value!);
+
+        var statuses = (await _manageBook.StatusRepository
+            .Where(e => e.UserId == userId))
+            .Select(s => s.ToResponse())
+            .ToList();
+        
+        return HttpContext.WithResult(HttpStatusCode.OK, statuses); // ох очень мне пока не нравиться как все реализованно
     }
 
     [HttpPost("status/{id:guid}")]

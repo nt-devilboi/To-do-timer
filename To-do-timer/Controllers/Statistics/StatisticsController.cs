@@ -11,8 +11,7 @@ namespace To_do_timer.Controllers;
 
 [ApiController]
 [Authorize(AuthenticationSchemes =
-    JwtBearerDefaults.AuthenticationScheme)]
-[Route("statistics")]
+    JwtBearerDefaults.AuthenticationScheme)]// сделать здесь общий роутер
 public class StatisticsController : Controller
 {
     private readonly ManageBook _manageBook;
@@ -26,7 +25,7 @@ public class StatisticsController : Controller
         _parserStats = parserStats;
     }
 
-    [HttpGet("/{bookId:guid}")]
+    [HttpGet("statistics/{bookId:guid}")]
     public async Task<Result<ResponseBookStats>> GetStatsDay(Guid bookId, DateTime? dateTime, Guid? statusId) // по идей можно сделать диапаозон из 2 dateTime !!
     {
         dateTime ??= DateTime.Now;
