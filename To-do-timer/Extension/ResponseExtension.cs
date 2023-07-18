@@ -3,7 +3,7 @@ using To_do_timer.Models.Book;
 
 namespace BBServer.Extensions;
 
-public static class BookExtension
+public static class ResponseExtension
 {
     public static EventResponse ToResponse(this Event @event)
     {

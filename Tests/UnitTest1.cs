@@ -47,13 +47,14 @@ namespace To_do_timer.Tests
             
         }
 
-        public static IEnumerable<TestCaseData> TestDetailActiveTime()
+        private static IEnumerable<TestCaseData> TestDetailActiveTime()
         {
             yield return new TestCaseData(new List<Event>()
             {
                 OneDayDefaultEvents(10,20,00, DataMemory.ExampleStatusCSharp),
                 OneDayDefaultEvents(10,25,00, DataMemory.ExampleStatusTypeScript),
-                OneDayDefaultEvents(10,30,00, DataMemory.ExampleStatusChill)
+                OneDayDefaultEvents(10,30,00, DataMemory.ExampleStatusChill),
+                OneDayDefaultEvents(10, 35,00, DataMemory.Unknown)
             }, new List<ResponseEventStats>()
             {
                 new ResponseEventStats()
@@ -67,8 +68,31 @@ namespace To_do_timer.Tests
                 new ResponseEventStats()
                 {
                     Status = DataMemory.ExampleStatusChill.ToResponse(), Time = new TimeSpan(0,5,0)
-                }
-            });
+                },
+            }).SetName("oneTimesActiveStatus");
+            
+            yield return new TestCaseData(new List<Event>()
+            {
+                OneDayDefaultEvents(10,20,00, DataMemory.ExampleStatusCSharp),
+                OneDayDefaultEvents(10,25,00, DataMemory.ExampleStatusTypeScript),
+                OneDayDefaultEvents(10,30,00, DataMemory.ExampleStatusChill),
+                OneDayDefaultEvents(10, 40, 00, DataMemory.ExampleStatusCSharp),
+                OneDayDefaultEvents(11, 00,00, DataMemory.Unknown)
+            }, new List<ResponseEventStats>()
+            {
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusCSharp.ToResponse(), Time = new TimeSpan(0,25,0)
+                },
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusTypeScript.ToResponse(), Time = new TimeSpan(0,5,0)
+                },
+                new ResponseEventStats()
+                {
+                    Status = DataMemory.ExampleStatusChill.ToResponse(), Time = new TimeSpan(0,10,0)
+                },
+            }).SetName("TwoTimesActiveStatus");
         }
         
         [Test]

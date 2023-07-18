@@ -49,7 +49,7 @@ public class StatisticsController : Controller
         return HttpContext.WithResult(HttpStatusCode.OK, resStats);
     }
 
-    [HttpGet("/{bookId:guid}/detail")]
+    [HttpGet("statistics/{bookId:guid}/detail")]
     public async Task<Result<List<ResponseEventStats>>> GetDetailStats(Guid bookId) // по идей этот запрос кидается при запуске книжки
     {
         var dateTime = DateTime.Now;

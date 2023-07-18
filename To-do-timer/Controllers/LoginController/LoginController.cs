@@ -37,7 +37,6 @@ public class LoginController : Controller
         JwtBearerDefaults.AuthenticationScheme)]
     public async Task<Result<LoginResponse>> Get()
     {
-        
         var userName = User.FindFirst(ClaimTypes.Name)?.Value;
         
         _log.Info(userName);

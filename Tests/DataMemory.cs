@@ -24,4 +24,10 @@ public static class DataMemory
         Desc = "ООО отдых",
         Name = "отдых"
     };
+    public static Status Unknown = new Status()
+    {
+        Id = Guid.NewGuid(), 
+        Desc = "дальше неизвество",
+        Name = "хз"
+    };
 }
